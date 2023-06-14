@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+class Vetor {
+    private double x;
+    private double y;
+    private double z;
+
+    public Vetor(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public Vetor soma(Vetor v) {
+        // Realiza a soma das coordenadas x, y e z do vetor atual com as coordenadas do vetor v recebido como parâmetro
+        double novoX = this.x + v.x;
+        double novoY = this.y + v.y;
+        double novoZ = this.z + v.z;
+        // Retorna um novo objeto Vetor com as coordenadas resultantes da soma
+        return new Vetor(novoX, novoY, novoZ);
+    }
+
+    public Vetor subtracao(Vetor v) {
+        // Realiza a subtração das coordenadas x, y e z do vetor atual com as coordenadas do vetor v recebido como parâmetro
+        double novoX = this.x - v.x;
+        double novoY = this.y - v.y;
+        double novoZ = this.z - v.z;
+        // Retorna um novo objeto Vetor com as coordenadas resultantes da subtração
+        return new Vetor(novoX, novoY, novoZ);
+    }
+
+    public double produtoEscalar(Vetor v) {
+        // Realiza o produto escalar entre o vetor atual e o vetor v recebido como parâmetro
+        // Multiplica as coordenadas x, y e z dos dois vetores e soma os resultados
+        return (this.x * v.x) + (this.y * v.y) + (this.z * v.z);
+    }
+
+    public double modulo() {
+        // Calcula o módulo do vetor atual usando o teorema de Pitágoras
+        return Math.sqrt((x * x) + (y * y) + (z * z));
+    }
+
+    public void imprimirVetor() {
+        // Imprime as coordenadas do vetor no formato (x, y, z)
+        System.out.println("(" + x + ", " + y + ", " + z + ")");
+    }
+}
+
+public class GeometriaVetorial {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite as coordenadas do primeiro vetor (x, y, z):");
+        double x1 = scanner.nextDouble();
+        double y1 = scanner.nextDouble();
+        double z1 = scanner.nextDouble();
+        Vetor vetor1 = new Vetor(x1, y1, z1);
+
+        System.out.println("Digite as coordenadas do segundo vetor (x, y, z):");
+        double x2 = scanner.nextDouble();
+        double y2 = scanner.nextDouble();
+        double z2 = scanner.nextDouble();
+        Vetor vetor2 = new Vetor(x2, y2, z2);
+
+        Vetor soma = vetor1.soma(vetor2);
+        Vetor subtracao = vetor1.subtracao(vetor2);
+        double produtoEscalar = vetor1.produtoEscalar(vetor2);
+
+        System.out.println("A soma dos vetores é:");
+        soma.imprimirVetor();
+
+        System.out.println("A subtração dos vetores é:");
+        subtracao.imprimirVetor();
+
+        System.out.println("O produto escalar dos vetores é: " + produtoEscalar);
+
+        scanner.close();
+    }
+}
